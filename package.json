@@ -10,7 +10,8 @@
     "start:backend": "cd apps/http-server && pnpm run build && pnpm run start",
     "start:ws": "cd apps/ws-server && pnpm run build && pnpm run start",
     "check-types": "turbo run check-types",
-    "start:web": "cd apps/web && pnpm run build && pnpm run start"
+    "start:web": "cd apps/web && pnpm run build && pnpm run start",
+    "db:deploy": "npx prisma migrate deploy"
   },
   "devDependencies": {
     "prettier": "^3.6.2",
