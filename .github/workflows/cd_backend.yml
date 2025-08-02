@@ -4,28 +4,28 @@ on:
     branches: 
       - "main"
 
-  jobs:
-    build:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout the code
-          uses: actions/checkout@v3
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
 
-        - name: Docker login
-          uses: docker/login-action@v2
-          with: 
-            username: ${{secrets.DOCKERHUB_USERNAME}}
-            password: ${{secrets.DOCKERHUB_PASSWORD}}
+      - name: Docker login
+        uses: docker/login-action@v2
+        with: 
+          username: ${{secrets.DOCKERHUB_USERNAME}}
+          password: ${{secrets.DOCKERHUB_PASSWORD}}
 
-        - name: Build and push
-          uses: docker/build-push-action@v4
-          with: 
-            context: .
-            file: ./docker/Dockerfile.backend
-            push: true
-            tags: thecurryguy/user-app-backend:${{github.sha}}
-        - name: Deploy to VM
-          run: |
-            echo "${{secrets.SSH_PRIVATE_KEY}}" &> ~/ssh_key
-            chmod 700 /home/runner/ssh_key
-            ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@15.206.174.15 -t "docker pull thecurryguy/user-app-backend:${{ github.sha }} && docker stop user_backend && docker run --name user_backend -d -p 8080:8080 thecurryguy/user-app-backend:${{ github.sha }}"
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with: 
+          context: .
+          file: ./docker/Dockerfile.backend
+          push: true
+          tags: thecurryguy/user-app-backend:${{github.sha}}
+      - name: Deploy to VM
+        run: |
+          echo "${{secrets.SSH_PRIVATE_KEY}}" &> ~/ssh_key
+          chmod 700 /home/runner/ssh_key
+          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@15.206.174.15 -t "docker pull thecurryguy/user-app-backend:${{ github.sha }} && docker stop user_backend && docker run --name user_backend -d -p 8080:8080 thecurryguy/user-app-backend:${{ github.sha }}"
