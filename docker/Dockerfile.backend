@@ -10,7 +10,7 @@ COPY ./pnpm-lock.yaml ./pnpm-lock.yaml
 COPY ./package.json ./package.json
 COPY ./turbo.json ./turbo.json
 
-COPY ./apps/backend ./apps/backend
+COPY ./apps/http-server ./apps/http-server
 
 RUN pnpm run db:generate
 RUN pnpm install
