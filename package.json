@@ -6,6 +6,8 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "db:generate": "cd packages/db && pnpm install && npx prisma generate && cd ../..",
+    "start:backend": "cd apps/http-server && pnpm run build && pnpm run start",
     "check-types": "turbo run check-types"
   },
   "devDependencies": {
