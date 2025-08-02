@@ -25,6 +25,6 @@ app.post("/signup", async (req, res)=>{
     return
 })
 
-app.listen(3002, ()=>{
+app.listen(8080, ()=>{
     console.log("Server running on 3002")
 })
