@@ -1,6 +1,6 @@
 FROM node:23-alpine
 
-RUN npm intall -g pnpm
+RUN npm install -g pnpm
 
 WORKDIR /usr/src/app
 
