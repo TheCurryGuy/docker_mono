@@ -1,7 +1,8 @@
 name: Deploy to Backend
 on:
   push:
-    branches: [main]
+    branches: 
+      - "main"
 
   jobs:
     build:
