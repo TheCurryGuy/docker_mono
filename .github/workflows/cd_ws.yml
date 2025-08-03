@@ -30,4 +30,4 @@ jobs:
         run: |
           echo "${{secrets.SSH_PRIVATE_KEY}}" &> ~/ssh_key
           chmod 700 /home/runner/ssh_key
-          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@13.127.211.2 "docker pull thecurryguy/user-app-ws:${{ github.sha }} && docker stop user_ws || true && docker rm user_ws || true && docker run --name user_ws -d -p 8081:8081 thecurryguy/user-app-ws:${{ github.sha }}"
+          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@13.204.43.157 "docker pull thecurryguy/user-app-ws:${{ github.sha }} && docker stop user_ws || true && docker rm user_ws || true && docker run --name user_ws -d -p 8081:8081 thecurryguy/user-app-ws:${{ github.sha }}"

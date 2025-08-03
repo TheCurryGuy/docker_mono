@@ -32,4 +32,4 @@ jobs:
         run: |
           echo "${{secrets.SSH_PRIVATE_KEY}}" &> ~/ssh_key
           chmod 700 /home/runner/ssh_key
-          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@13.127.211.2 "docker pull thecurryguy/user-app-web:${{ github.sha }} && docker run --rm -e DATABASE_URL='${DATABASE_URL}' thecurryguy/user-app-web:${{ github.sha }} pnpm run db:deploy && docker stop user_web || true && docker rm user_web || true && docker run --name user_web -d -p 3000:3000 -e DATABASE_URL='${DATABASE_URL}' thecurryguy/user-app-web:${{ github.sha }}"
+          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@13.204.43.157 "docker pull thecurryguy/user-app-web:${{ github.sha }} && docker run --rm -e DATABASE_URL='${DATABASE_URL}' thecurryguy/user-app-web:${{ github.sha }} pnpm run db:deploy && docker stop user_web || true && docker rm user_web || true && docker run --name user_web -d -p 3000:3000 -e DATABASE_URL='${DATABASE_URL}' thecurryguy/user-app-web:${{ github.sha }}"
