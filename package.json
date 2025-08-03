@@ -11,11 +11,12 @@
     "start:ws": "cd apps/ws-server && pnpm run build && pnpm run start",
     "check-types": "turbo run check-types",
     "start:web": "cd apps/web && pnpm run build && pnpm run start",
-    "db:deploy": "npx prisma migrate deploy --schema=./packages/db/prisma/schema.prisma"
+    "db:deploy": "prisma migrate deploy --schema=./packages/db/prisma/schema.prisma"
   },
   "devDependencies": {
     "dotenv-cli": "^10.0.0",
     "prettier": "^3.6.2",
+    "prisma": "^6.13.0",
     "turbo": "^2.5.5",
     "typescript": "5.8.3"
   },
