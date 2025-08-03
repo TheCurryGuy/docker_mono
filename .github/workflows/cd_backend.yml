@@ -22,10 +22,12 @@ jobs:
         with: 
           context: .
           file: ./docker/Dockerfile.backend
+          build-args: |
+            DATABASE_URL=${{ secrets.DATABASE_URL }}
           push: true
           tags: thecurryguy/user-app-backend:${{github.sha}}
       - name: Deploy to VM
         run: |
           echo "${{secrets.SSH_PRIVATE_KEY}}" &> ~/ssh_key
           chmod 700 /home/runner/ssh_key
-          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@15.207.115.239 "docker pull thecurryguy/user-app-backend:${{ github.sha }} && docker stop user_backend || true && docker rm user_backend || true && docker run --name user_backend -d -p 8080:8080 thecurryguy/user-app-backend:${{ github.sha }}"
+          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@3.110.151.212 "docker pull thecurryguy/user-app-backend:${{ github.sha }} && docker stop user_backend || true && docker rm user_backend || true && docker run --name user_backend -d -p 8080:8080 thecurryguy/user-app-backend:${{ github.sha }}"

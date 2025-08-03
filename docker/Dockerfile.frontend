@@ -13,9 +13,10 @@ COPY ./turbo.json ./turbo.json
 
 COPY ./apps ./apps
 
-RUN pnpm install
+
 RUN echo "DATABASE_URL=${DATABASE_URL}" > .env
 RUN pnpm run db:generate
+RUN pnpm install
 RUN pnpm run build --filter=web
 
 EXPOSE 3000
