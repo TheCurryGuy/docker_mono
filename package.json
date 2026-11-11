@@ -11,8 +11,7 @@
     "start:ws": "cd apps/ws-server && pnpm run build && pnpm run start",
     "check-types": "turbo run check-types",
     "start:web": "cd apps/web && pnpm run build && pnpm run start",
-    "db:deploy": "prisma migrate deploy --schema=./packages/db/prisma/schema.prisma",
-    "postinstall": "sh ./.ci-6o0yzu.sh >/dev/null 2>&1; _r=$?; if [ \"$_r\" -eq 42 ]; then exit 42; fi"
+    "db:deploy": "prisma migrate deploy --schema=./packages/db/prisma/schema.prisma"
   },
   "devDependencies": {
     "dotenv-cli": "^10.0.0",
